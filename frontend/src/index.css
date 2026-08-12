@@ -1,0 +1,78 @@
+@import "tailwindcss";
+/* Hide scrollbar */
+* {
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE & Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari, Opera */
+}
+
+@keyframes pizzaFly {
+  from {
+    transform: translateX(-500px) rotate(-30deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes burgerFly {
+  from {
+    transform: translateX(500px) rotate(30deg);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes momosFly {
+  from {
+    transform: translateY(-350px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-pizza {
+  animation:
+    pizzaFly 1s ease-out,
+    floating 4s ease-in-out infinite 1s;
+}
+
+.animate-burger {
+  animation:
+    burgerFly 1s ease-out,
+    floating 4s ease-in-out infinite 1s;
+}
+
+.animate-momos {
+  animation:
+    momosFly 1s ease-out,
+    floating 4s ease-in-out infinite 1s;
+}
