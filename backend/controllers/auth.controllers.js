@@ -31,8 +31,8 @@ export const signUp = async (req, res) => {
         const token = await genToken(user._id)
         //storing the cookie in browser with the name token with the value taken from above line const token
         res.cookie("token", token, {
-            secure: false, // we are at dev stage that is why onlu http not https // In development we use HTTP, so secure is false.// In production (HTTPS), set secure: true.
-            sameSite: "strict",
+            secure: true, // we are at dev stage that is why onlu http not https // In development we use HTTP, so secure is false.// In production (HTTPS), set secure: true.
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,// cookie stays in the browser for 7 days
             httpOnly: true  //// Prevents JavaScript from accessing the cookie (helps protect against XSS attacks)
 
@@ -73,8 +73,8 @@ export const signIn = async (req, res) => {
 
         const token = await genToken(user._id)
         res.cookie("token", token, {
-            secure: false,
-            sameSite: "strict",
+            secure: true,
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true
 
@@ -211,8 +211,8 @@ export const googleAuth = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,
-            sameSite: "strict",
+            secure: true,
+            sameSite: "none",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
