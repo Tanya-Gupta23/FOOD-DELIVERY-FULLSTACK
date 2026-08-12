@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 
 import axios from 'axios'
-import DeliveryBoyTracking from '../components/deliveryBoyTracking';
+import DeliveryBoyTracking from '../components/DeliveryBoyTracking';
 import { useSelector } from 'react-redux';
 //map for user
 function TrackOrderPage() {
