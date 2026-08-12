@@ -195,34 +195,38 @@ export const resetPassword = async (req, res) => {
 
 export const googleAuth = async (req, res) => {
     console.log(req.body);
+
     try {
         const { fullName, email, mobile, role } = req.body;
 
         let user = await User.findOne({ email });
 
         // Agar user nahi hai to naya create karo
-       if (!user) {
-    return res.status(404).json({
-        message: "This email is not registered. Please sign up first."
-    });
-}
+        if (!user) {
+            user = await User.create({
+                fullName,
+                email,
+                mobile,
+                role
+            });
+        }
 
         const token = await genToken(user._id);
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: false,
+            sameSite: "strict",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
         return res.status(200).json(user);
 
     } catch (error) {
-         console.log(error);
+        console.log(error);
 
-    return res.status(500).json({
-        message: error.message
+        return res.status(500).json({
+            message: error.message
         });
     }
 };
